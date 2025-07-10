@@ -7,7 +7,7 @@ export const projects: Project[] = [
         description: 'This is my personal portfolio website. It showcases my skills, projects, and experience as a software developer.',
         technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
         githubLink: 'https://github.com/rhaiz/portfolio',
-        demoLink: 'https://rhaiz.github.io/portfolio/',
+        demoLink: 'https://portfolio-rhaissazeferinos-projects.vercel.app/',
         imageLink: '/projects/portfolio.png'
     },
     {
@@ -15,7 +15,7 @@ export const projects: Project[] = [
         description: 'This is application of a online Soroban. It allows users to practice Soroban abacus calculations and improve their mental math skills.',
         technologies: ['React.js', 'HTML', 'CSS', 'JavaScript'],
         githubLink: 'https://github.com/rhaiz/Soroban',
-        demoLink: 'TODO',
+        demoLink: 'https://soroban-rhaissazeferinos-projects.vercel.app/',
         imageLink: '/projects/soroban.png',
     },
     // {
