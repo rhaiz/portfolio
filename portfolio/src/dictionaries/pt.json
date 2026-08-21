@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "title": "Rhaissa Zeferino | Portfólio",
+    "description": "Portfólio de Rhaissa Zeferino, software engineer em Hortolândia, SP, com foco em frontend, backend e soluções modernas com Next.js."
+  },
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "experience": "Experiência",
+    "education": "Formação",
+    "skills": "Competências",
+    "certifications": "Certificações",
+    "projects": "Projetos",
+    "courses": "Cursos",
+    "lightMode": "Modo claro",
+    "darkMode": "Modo escuro"
+  },
+  "home": {
+    "greeting": "Olá,",
+    "headline": "bem-vindo ao meu mundo",
+    "description": "Meu nome é Rhaissa Zeferino e este é o meu portfólio. Sinta-se à vontade para explorar e conhecer mais sobre mim e o meu trabalho.",
+    "cta": "Veja meus projetos"
+  },
+  "about": {
+    "title": "Rhaissa Zeferino",
+    "subtitle": "Software Engineer ● Hortolândia, SP - Brasil ● rhaissazeferino@gmail.com",
+    "description": "Sou uma software engineer com paixão por criar soluções inovadoras. Tenho experiência em desenvolvimento frontend e backend e estou sempre aprendendo novas tecnologias.",
+    "resumeLabel": "Ver currículo completo"
+  },
+  "projects": {
+    "title": "Projetos em destaque",
+    "githubLabel": "Ver no GitHub",
+    "demoLabel": "Ver demonstração"
+  },
+  "courses": {
+    "title": "Cursos fundamentais",
+    "certificateLabel": "Ver certificado",
+    "historyLabel": "Ver histórico completo de cursos"
+  },
+  "coursesHistory": {
+    "home": "Início",
+    "courses": "Cursos",
+    "title": "Histórico de cursos",
+    "tableTitle": "Título",
+    "tableTechnologies": "Tecnologias",
+    "tableInstitution": "Instituição",
+    "tableCompletionDate": "Data de conclusão",
+    "tableCertificateLink": "Link do certificado",
+    "certificateFallback": "ver certificado"
+  },
+  "certifications": {
+    "title": "Certificações"
+  }
+}

@@ -1,14 +1,5 @@
-import Landing from '@/components/Landing';
-import AboutPage from './about/page';
-import ProjectsPage from './projects/page';
-
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <>
-    <Landing/>
-    <AboutPage/>
-    <ProjectsPage/>
-    </>
-  );
+  redirect("/pt");
 }

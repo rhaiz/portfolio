@@ -13,7 +13,7 @@ export const projects: Project[] = [
   {
     title: "Soroban",
     description:
-      "This is application of a online Soroban. It allows users to practice Soroban abacus calculations and improve their mental math skills.",
+      "I came up with this project while studying Soroban abacus online. Since I couldn’t afford a physical one and most sites didn’t let users choose the abacus size, I decided to build my own. This app lets users practice Soroban calculations, customize the abacus, and sharpen their mental math skills.",
     technologies: ["React.js", "HTML", "CSS", "JavaScript"],
     githubLink: "https://github.com/rhaiz/Soroban",
     demoLink: "https://soroban-rhaissazeferinos-projects.vercel.app/",

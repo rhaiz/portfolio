@@ -3,68 +3,87 @@ import Link from "next/link";
 import { FaCalendar } from "react-icons/fa";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
-const CoursesHistoryPage = () => {
+export type CoursesHistoryContent = {
+  home: string;
+  courses: string;
+  title: string;
+  tableTitle: string;
+  tableTechnologies: string;
+  tableInstitution: string;
+  tableCompletionDate: string;
+  tableCertificateLink: string;
+  certificateFallback: string;
+};
+
+type CoursesHistorySectionProps = {
+  content: CoursesHistoryContent;
+  lang?: string;
+};
+
+export default function CoursesHistorySection({
+  content,
+  lang,
+}: CoursesHistorySectionProps) {
+  const prefix = lang ? `/${lang}` : "";
   const getText = (link = "") => {
     const match = link.match(/^https:\/\/([^ ]*?\.com)/);
-    return match ? match[1] : "view certificate";
+    return match ? match[1] : content.certificateFallback;
   };
-  const sortedCourses = courses.sort((a, b) => {
-    return (
+  const sortedCourses = courses.sort(
+    (a, b) =>
       new Date(b.completitionDate).getTime() -
-      new Date(a.completitionDate).getTime()
-    );
-  });
+      new Date(a.completitionDate).getTime(),
+  );
+
   return (
     <section className="py-23 container max-w-7xl mx-auto px-4">
-      {/* Manual Breadcrumb */}
       <nav className="mb-2 font-semibold">
         <ol className="list-reset flex text-sm text-neutral-500">
           <li>
             <Link
-              href="/"
+              href={prefix || "/"}
               className="hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors"
             >
-              Home
+              {content.home}
             </Link>
           </li>
           <li className="mx-2">/</li>
           <li>
             <Link
-              href="/courses"
+              href={`${prefix}/courses`}
               className="hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors"
             >
-              Courses
+              {content.courses}
             </Link>
           </li>
           <li className="mx-2">/</li>
           <li className="text-emerald-800 dark:text-emerald-300">
-            Courses History
+            {content.title}
           </li>
         </ol>
       </nav>
 
       <h2 className="text-4xl text-center font-bold text-emerald-800 dark:text-emerald-300 mb-12">
-        Courses History
+        {content.title}
       </h2>
 
-      {/* Desktop table */}
       <table className="hidden md:table min-w-full rounded-lg shadow-md ">
         <thead className="border-b border-neutral-300 dark:border-neutral-700">
           <tr>
             <th className="text-left tracking-wide p-3 font-semibold text-sm w-1/4">
-              Title
+              {content.tableTitle}
             </th>
             <th className="text-left tracking-wide p-3 font-semibold text-sm w-1/3">
-              Technologies
+              {content.tableTechnologies}
             </th>
             <th className="text-left tracking-wide p-3 font-semibold text-sm w-1/6">
-              Institution
+              {content.tableInstitution}
             </th>
             <th className="text-left tracking-wide p-3 font-semibold text-sm w-1/6">
-              Completion Date
+              {content.tableCompletionDate}
             </th>
             <th className="text-left tracking-wide p-3 font-semibold text-sm w-1/5">
-              Certificate Link
+              {content.tableCertificateLink}
             </th>
           </tr>
         </thead>
@@ -114,17 +133,16 @@ const CoursesHistoryPage = () => {
         </tbody>
       </table>
 
-      {/* Mobile table */}
       <table className="md:hidden min-w-full rounded-lg shadow-md">
         <thead className="border-b border-neutral-300 dark:border-neutral-700">
           <tr>
             <th className="text-left tracking-wide p-3 font-semibold text-sm md:text-md">
               {" "}
-              Title
+              Title{" "}
             </th>
             <th className="text-left tracking-wide p-3 font-semibold text-sm md:text-md">
               {" "}
-              Technologies
+              Technologies{" "}
             </th>
           </tr>
         </thead>
@@ -155,6 +173,4 @@ const CoursesHistoryPage = () => {
       </table>
     </section>
   );
-};
-
-export default CoursesHistoryPage;
+}
