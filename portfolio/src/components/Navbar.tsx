@@ -7,10 +7,15 @@ import {
   Bars3Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useTheme } from "@/app/context/themeContext";
-import { buildLocalePath, type Dictionary, type Locale } from "@/lib/i18n";
+import {
+  buildLocalePath,
+  locales,
+  type Dictionary,
+  type Locale,
+} from "@/lib/i18n";
 
 type NavbarProps = {
   lang: Locale;
@@ -18,6 +23,7 @@ type NavbarProps = {
 };
 
 const Navbar = ({ lang, labels }: NavbarProps) => {
+  const router = useRouter();
   const { theme, toggleTheme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const pathName = usePathname();
@@ -41,6 +47,38 @@ const Navbar = ({ lang, labels }: NavbarProps) => {
   ];
 
   const isActivePath = (href: string) => pathName === href;
+
+  const localeLabel: Record<Locale, string> = {
+    pt: "PT",
+    en: "EN",
+    es: "ES",
+  };
+
+  const getLocalePath = (targetLang: Locale) => {
+    if (!pathName) {
+      return buildLocalePath(targetLang, "/");
+    }
+
+    const segments = pathName.split("/").filter(Boolean);
+    const firstSegment = segments[0] ?? "";
+    const restSegments = locales.includes(firstSegment as Locale)
+      ? segments.slice(1)
+      : segments;
+
+    const suffix = restSegments.length > 0 ? `/${restSegments.join("/")}` : "/";
+
+    return buildLocalePath(targetLang, suffix);
+  };
+
+  const handleLanguageChange = (value: string) => {
+    const nextLang = value as Locale;
+
+    if (nextLang === lang) {
+      return;
+    }
+
+    router.push(getLocalePath(nextLang));
+  };
 
   return (
     <nav className="fixed w-full bg-neutral-200/80 dark:bg-neutral-800/80 backdrop-blur-sm z-50 border-b border-gray-200 dark:border-gray-700 transition-colors shadow-sm">
@@ -67,6 +105,18 @@ const Navbar = ({ lang, labels }: NavbarProps) => {
                 </Link>
               );
             })}
+            <select
+              value={lang}
+              onChange={(event) => handleLanguageChange(event.target.value)}
+              className="rounded-md border border-neutral-300 bg-white px-2 py-1 text-sm text-emerald-800 dark:border-neutral-600 dark:bg-neutral-800 dark:text-emerald-300"
+              aria-label="Select language"
+            >
+              {locales.map((locale) => (
+                <option key={locale} value={locale}>
+                  {localeLabel[locale]}
+                </option>
+              ))}
+            </select>
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg hover:bg-gray-200 text-black dark:hover:bg-gray-700 transition-colors cursor-pointer"
@@ -104,6 +154,26 @@ const Navbar = ({ lang, labels }: NavbarProps) => {
                   </Link>
                 </div>
               ))}
+              <div>
+                <label className="block pb-2 text-sm text-emerald-800 dark:text-emerald-300">
+                  Language
+                </label>
+                <select
+                  value={lang}
+                  onChange={(event) => {
+                    handleLanguageChange(event.target.value);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-emerald-800 dark:border-neutral-600 dark:bg-neutral-800 dark:text-emerald-300"
+                  aria-label="Select language"
+                >
+                  {locales.map((locale) => (
+                    <option key={locale} value={locale}>
+                      {localeLabel[locale]}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <div>
                 <button
                   onClick={toggleTheme}
